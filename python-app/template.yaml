@@ -41,17 +41,12 @@ spec:
           app_name: ${{ parameters.component_id }}
           app_env: ${{ parameters.environment }}
 
-    - id: fetchDocs
-      name: Fetch Docs
-      action: fetch:plain
-      input:
-        targetPath: ./community
-        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
-
     - id: publish
       name: Publish
       action: publish:github
       input:
+        allowedHosts:
+          - github.com
         description: This is ${{ parameters.component_id }}
         repoUrl: github.com?owner=ggarrett89&repo=${{ parameters.component_id }}  
         protectDefaultBranch: false
